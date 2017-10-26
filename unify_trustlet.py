@@ -1,8 +1,17 @@
 import sys, os, struct
 
-bitness = 64
-
 def main():
+
+    #Reading the arguments
+    if len(sys.argv) != 5:
+        print "USAGE: <BITNESS> <TRUSTLET_DIR> <TRUSTLET_NAME> <OUTPUT_FILE_PATH>"
+        return
+
+    bitness = sys.argv[1]
+    trustlet_dir = sys.argv[2]
+    trustlet_name = sys.argv[3]
+    output_file_path = sys.argv[4]
+
     if (bitness == 64):
         ELF_HEADER_SIZE = 0x40
         E_PHNUM_OFFSET = 0x38
@@ -15,14 +24,6 @@ def main():
         PHDR_SIZE = 0x20
         P_FILESZ_OFFSET = 0x10
         P_OFFSET_OFFSET = 0x4
-
-    #Reading the arguments
-    if len(sys.argv) != 4:
-        print "USAGE: <TRUSTLET_DIR> <TRUSTLET_NAME> <OUTPUT_FILE_PATH>"
-        return
-    trustlet_dir = sys.argv[1]
-    trustlet_name = sys.argv[2]
-    output_file_path = sys.argv[3]
 
     #Reading the ELF header from the ".mdt" file
     mdt = open(os.path.join(trustlet_dir, "%s.mdt" % trustlet_name), "rb")
