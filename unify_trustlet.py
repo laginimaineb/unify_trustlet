@@ -7,7 +7,7 @@ def main():
         print "USAGE: <BITNESS> <TRUSTLET_DIR> <TRUSTLET_NAME> <OUTPUT_FILE_PATH>"
         return
 
-    bitness = sys.argv[1]
+    bitness = int(sys.argv[1])
     trustlet_dir = sys.argv[2]
     trustlet_name = sys.argv[3]
     output_file_path = sys.argv[4]
